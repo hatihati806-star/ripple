@@ -1,0 +1,6 @@
+[project]
+name = "ripple-pipeline"
+version = "0.1.0"
+description = "Ripple water-quality satellite pipeline"
+requires-python = ">=3.10"
+dependencies = ["numpy", "rasterio"]
