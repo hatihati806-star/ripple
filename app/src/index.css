@@ -1,0 +1,172 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Inter Variable", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+/* MapLibre attribution must stay legible against the light basemap. */
+.maplibregl-ctrl-attrib {
+  font-size: 10px;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: #475569;
+}
+
+/*
+ * MapLibre's stock controls are 29x29, below the 44x44 touch-target minimum. The extra
+ * `.maplibregl-map` in the selector is required, not decorative: MapLibre's own rule is
+ * `.maplibregl-ctrl-group button` at equal specificity, so with code-split CSS the two
+ * stylesheets land in either order and source order alone decides. Verified headlessly --
+ * the buttons measured 29x29 when this relied on load order.
+ */
+.maplibregl-map .maplibregl-ctrl-group button {
+  width: 44px;
+  height: 44px;
+}
+
+.maplibregl-map .maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  background-size: 22px 22px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.maplibregl-ctrl-group {
+  border-radius: 10px;
+}
+
+/* Attribution is a block of inline text links; WCAG 2.5.5 exempts inline targets. Keep it
+   readable rather than making every credit a 44px tile over the map. */
+.maplibregl-ctrl-attrib {
+  min-height: 0;
+}
+
+/* Panels rise into place rather than popping, which keeps the map from feeling repainted. */
+@keyframes ripple-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ripple-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ripple-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Chat bubbles and action chips: a short rise, so a streamed exchange reads as arrival
+   rather than as a repaint. Both are decoration -- nothing is only conveyed by motion. */
+@keyframes ripple-bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ripple-chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-bubble-in {
+  animation: ripple-bubble-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-chip-in {
+  animation: ripple-chip-in 200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-panel-in {
+  animation: ripple-panel-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-sheet-in {
+  animation: ripple-sheet-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: ripple-fade-in 420ms ease-out both;
+}
+
+/* Thin scrollbars inside panels; the default is heavy against glass surfaces. */
+.panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(148 163 184 / 0.55) transparent;
+}
+
+.panel-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.panel-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgb(148 163 184 / 0.55);
+}
+
+.panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Keep focus rings visible on every surface, including the dark primary button. */
+:where(button, [role="button"], a, input):focus-visible {
+  outline: 2px solid #0f172a;
+  outline-offset: 2px;
+}
+
+/*
+ * Motion is decoration here, never information: everything above is an entrance or a
+ * crossfade, so honouring the OS setting costs nothing. The map itself checks this flag in
+ * JS for the frame crossfade, marker pulse, and fly-to animations.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
