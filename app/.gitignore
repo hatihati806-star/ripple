@@ -1,0 +1,6 @@
+# Deployment state and the local env file. `.env.example` is intentionally *not* ignored:
+# it is the template a new contributor copies, and it contains no values.
+.vercel
+.env
+.env.local
+.env.*.local
