@@ -15,7 +15,7 @@ at **~1.85 km/pixel** across the United States, southern Canada and Mexico.
 
 ## 1. At a Glance
 
-| | |
+| **Field** | **Value** |
 |---|---|
 | **Name** | Ripple |
 | **Live** | https://ripple-liart.vercel.app — public, no login (Vercel free tier, static deploy) |

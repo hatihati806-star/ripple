@@ -34,7 +34,7 @@ relative to each region's own observed range, never a health standard. Cyanobact
 toxicity are refused by design — Sentinel-2 has no 620 nm band, so the honest answer is
 "bloom intensity only". And the numbers are checked against measurements rather than asserted.
 
-| | |
+| **Field** | **Value** |
 |---|---|
 | **Region** | Continental US, southern Canada and Mexico (128°W–60°W, 18°N–54°N) |
 | **Grid** | 4096 × 2777 px Web Mercator, ~1,848 m per pixel |
