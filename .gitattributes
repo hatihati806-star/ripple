@@ -1,0 +1,12 @@
+# Text is normalised so the repo does not fill with line-ending noise.
+* text=auto eol=lf
+
+# The demo film and the screenshots are binary; never diff or merge them.
+*.mp4 binary
+*.webp binary
+*.png binary
+*.jpg binary
+*.pdf binary
+
+# Notebooks and the generated manifest are data, not prose.
+*.json linguist-generated=false

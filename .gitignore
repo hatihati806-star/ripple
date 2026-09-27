@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+env/
+
+# Pipeline caches: the ocean mask and the NWIS responses are re-fetched on demand and are
+# ~21 MB between them. Nothing here is needed to run the project.
+.cache/
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Secrets and deployment state. The assistant's key lives in a Vercel environment variable;
+# it must never be committed, and neither should the local file that holds it.
+.env
+.env.local
+.env.*.local
+.vercel/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
